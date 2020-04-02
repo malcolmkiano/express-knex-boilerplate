@@ -5,6 +5,8 @@
   "main": "src/server.js",
   "scripts": {
     "test": "mocha --require test/setup.js --watch",
+    "migrate": "postgrator --config postgrator-config.js",
+    "migrate:test": "env NODE_ENV=test npm run migrate",
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "predeploy": "npm audit",
@@ -23,6 +25,7 @@
     "chai": "^4.2.0",
     "mocha": "^7.1.1",
     "nodemon": "^2.0.2",
+    "postgrator-cli": "^3.2.0",
     "supertest": "^4.0.2"
   }
 }

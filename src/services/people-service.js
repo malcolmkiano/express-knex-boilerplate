@@ -17,7 +17,7 @@ const PeopleService = {
       .from('sample_table')
       .select()
       .where({ id })
-      .then(rows => rows[0]);
+      .first();
   },
 
   addPerson(db, person) {
@@ -25,9 +25,7 @@ const PeopleService = {
       .into('sample_table')
       .insert(person)
       .returning('*')
-      .then(rows => {
-        return rows[0];
-      });
+      .first();
   },
 
   updatePerson(db, id, data) {

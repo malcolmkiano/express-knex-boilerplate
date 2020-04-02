@@ -13,20 +13,5 @@ describe('App', () => {
     });
 
   });
-
-  // messages endpoint
-  describe('GET /people', () => {
-
-    // happy test
-    it('responds with 200 with an array of people', () => {
-      return supertest(app)
-        .get('/people')
-        .expect(200)
-        .then(response => {
-          expect(response.body).to.be.an('array');
-        });
-    });
-
-  });
   
 });
