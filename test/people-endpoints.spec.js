@@ -21,8 +21,8 @@ describe('People endpoints', () => {
   afterEach('clean the table', cleanPeople);
 
   after('disconnect from db', () => db.destroy());
-  
 
+  // GET requests (READ)
   context('Given there are people in the database', () => {
     const testPeople = makePeopleArray();
 
@@ -48,7 +48,7 @@ describe('People endpoints', () => {
 
   });
 
-  context('Given no people', () => {
+  context('Given no people in the database', () => {
     it('GET /people responds with 200 with an empty array', () => {
       return supertest(app)
         .get('/people')
@@ -59,7 +59,7 @@ describe('People endpoints', () => {
       const id = 2;
       return supertest(app)
         .get(`/people/${id}`)
-        .expect(404, { error: 'Person not found' });
+        .expect(404, 'Person not found');
     });
   });
   

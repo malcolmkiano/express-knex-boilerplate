@@ -20,4 +20,4 @@ function makePeopleArray() {
 
 module.exports = {
   makePeopleArray
-}
+};

@@ -12,7 +12,7 @@ const PeopleService = {
       .where('job_title', 'ilike', `%${jobTitle}%`);
   },
 
-  getPerson(db, id) {
+  getPersonById(db, id) {
     return db
       .from('sample_table')
       .select()
@@ -25,7 +25,7 @@ const PeopleService = {
       .into('sample_table')
       .insert(person)
       .returning('*')
-      .first();
+      .then(rows => rows[0]);
   },
 
   updatePerson(db, id, data) {
