@@ -5,12 +5,10 @@ const xss = require('xss');
  * Router to handle all requests to /employees
  */
 const employeesRouter = express.Router();
+employeesRouter.use(express.json());
 
 const Service = require('../services/service');
 const EmployeesService = new Service('employees');
-
-employeesRouter.use(express.json());
-
 
 /**
  * Removes any possible XSS attack content
@@ -24,14 +22,15 @@ const sanitize = employee => {
   };
 };
 
-
 // respond with all records on the base route
 employeesRouter.get('/', (req, res, next) => {
   const db = req.app.get('db');
 
   EmployeesService.getAllItems(db)
     .then(employees => {
-      return res.status(200).json(employees.map(sanitize));
+      return res
+        .status(200)
+        .json(employees.map(sanitize));
     })
     .catch(next);
 
@@ -46,14 +45,20 @@ employeesRouter.get('/:id', (req, res, next) => {
   EmployeesService.getItemById(db, id)
     .then(employee => {
       if (employee) {
-        return res.status(200).json(sanitize(employee));
+        return res
+          .status(200)
+          .json(sanitize(employee));
+          
       } else {
-        return res.status(404).send('Employee not found');
+        return res
+          .status(404)
+          .json({
+            error: { message: 'Employee not found' }
+          });
       }
       
     })
     .catch(next);
 });
-
 
 module.exports = employeesRouter;

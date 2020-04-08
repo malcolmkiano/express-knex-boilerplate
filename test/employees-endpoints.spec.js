@@ -4,11 +4,9 @@ const app = require('../src/app');
 const { TEST_DATABASE_URL } = require('../src/config');
 const { makeEmployeesArray, randomEmployee } = require('./employees.fixtures');
 
-
 // set up variables used throughout these tests
 const table_name = 'employees';
 const endpoint = '/employees';
-
 
 describe('Employees endpoints', () => {
   let db;
@@ -21,12 +19,10 @@ describe('Employees endpoints', () => {
     app.set('db', db);
   });
 
-
   const cleanData = () => db.from(table_name).truncate();
   before('clean the table', cleanData);
   afterEach('clean the table', cleanData);
   after('disconnect from db', () => db.destroy());
-
 
   // GET requests (READ)
   context(`Given there are items in the '${table_name}' table`, () => {
@@ -69,5 +65,4 @@ describe('Employees endpoints', () => {
     });
   });
   
-
 });

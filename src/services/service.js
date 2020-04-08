@@ -11,7 +11,6 @@ class Service {
     this.table = table_name;
   }
 
-
   /**
    * returns a list of all items in the table
    * @param {{}} db an instance of the Knex database object
@@ -35,7 +34,6 @@ class Service {
       .first();
   }
 
-
   /**
    * inserts a single item into the table
    * @param {{}} db an instance of the Knex database object
@@ -49,7 +47,6 @@ class Service {
       .then(rows => rows[0]);
   }
 
-
   /**
    * updates a single item at the specified ID in the table
    * @param {{}} db an instance of the Knex database object
@@ -62,7 +59,6 @@ class Service {
       .where({ id })
       .update(data);
   }
-
 
   /**
    * removes a single record at the specified ID from the table

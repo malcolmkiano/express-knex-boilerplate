@@ -8,6 +8,10 @@ const db = knex({
   connection: DATABASE_URL
 });
 
+// make knex instance globally available
 app.set('db', db);
 
-app.listen(PORT, () => console.log(`Server listening in ${NODE_ENV} mode at http://localhost:${PORT}`));
+// start listening
+app.listen(PORT, () => {
+  console.log(`Server listening in ${NODE_ENV} mode at http://localhost:${PORT}`);
+});

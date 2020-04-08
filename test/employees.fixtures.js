@@ -1,3 +1,6 @@
+/**
+ * returns a list of employees for testing
+ */
 function makeEmployeesArray() {
   return [
     {
@@ -19,7 +22,7 @@ function makeEmployeesArray() {
 }
 
 /**
- * Returns a random item from the employees array
+ * returns a random item from the employees array
  */
 function randomEmployee() {
   const index = Math.floor(Math.random() * makeEmployeesArray().length);
