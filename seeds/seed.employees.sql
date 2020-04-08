@@ -1,4 +1,4 @@
-INSERT INTO sample_table (name, job_title)
+INSERT INTO employees (emp_name, job_title)
 VALUES
   ('John Doe', 'UX Designer'),
   ('Jane Doe', 'Project Manager'),

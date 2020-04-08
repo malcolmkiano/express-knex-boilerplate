@@ -3,12 +3,9 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
-
-const { NODE_ENV } = require('./config');
-const peopleRouter = require('./people/people-router');
-
 const app = express();
-const morganOption = (NODE_ENV === 'production')
+const { NODE_ENV } = require('./config');
+const morganOption = (process.env.NODE_ENV === 'production')
   ? 'tiny'
   : 'common';
 
@@ -18,11 +15,33 @@ app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
 
-app.use('/people', peopleRouter);
 
-// request handling
+// import routers
+const employeesRouter = require('./routers/employees-router');
+
+
+// set up routes
+const routes = [
+  {
+    url: '/employees',
+    router: employeesRouter
+  }
+];
+
+
+// add routes to app
+routes.forEach(route => {
+  app.use(route.url, route.router);
+});
+
+
+// list endpoints by default
 app.get('/', (req, res) => {
-  res.status(200).send('Hello, world!');
+  return res
+    .status(200)
+    .json({
+      endpoints: routes.map(route => route.url)
+    });
 });
 
 // error handling
