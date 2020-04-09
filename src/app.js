@@ -22,17 +22,17 @@ const protectedRouter = require('./routers/protected-router');
 const routes = [
   {
     url: '/employees',
-    router: employeesRouter
+    router: employeesRouter,
   },
   {
     url: '/protected',
-    router: protectedRouter
+    router: protectedRouter,
   }
 ];
 
 // add routes to app
-routes.forEach(route => {
-  app.use(route.url, route.router);
+routes.forEach(({url, router}) => {
+  app.use(url, router);
 });
 
 // list endpoints by default

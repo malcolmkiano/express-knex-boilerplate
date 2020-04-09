@@ -1,4 +1,4 @@
-const { API_TOKEN } = require('./config');
+const { API_TOKEN } = require('../config');
 
 /**
  * Checks for a correct Bearer token authorization header
